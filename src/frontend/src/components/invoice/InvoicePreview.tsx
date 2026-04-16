@@ -14,13 +14,24 @@ function formatDate(dateStr: string): string {
 function formatAmount(amount: number, currency: string): string {
   const symbols: Record<string, string> = {
     USD: "$",
-    EUR: "€",
-    GBP: "£",
-    INR: "₹",
     CAD: "CA$",
     AUD: "A$",
+    SGD: "S$",
+    EUR: "€",
+    GBP: "£",
+    JPY: "¥",
+    INR: "₹",
+    CNY: "¥",
+    CHF: "₣",
+    KRW: "₩",
+    THB: "฿",
+    AED: "AED ",
+    SAR: "SAR ",
+    MXN: "MX$",
+    BRL: "R$",
   };
-  const sym = symbols[currency] ?? "$";
+  const key = currency?.trim().toUpperCase() ?? "";
+  const sym = symbols[key] ?? (currency?.trim() ? `${currency.trim()} ` : "$");
   return `${sym}${amount.toFixed(2)}`;
 }
 

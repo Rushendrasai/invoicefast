@@ -36,8 +36,6 @@ interface FieldErrors {
   noItems?: string;
 }
 
-const CURRENCIES = ["USD", "EUR", "GBP", "CAD", "AUD", "INR", "JPY", "SGD"];
-
 const THEME_PRESETS = [
   "#4f46e5",
   "#0ea5e9",
@@ -118,16 +116,28 @@ export function InvoiceForm({
   const labelCls = "block text-xs font-medium text-muted-foreground mb-1";
 
   /* ── Currency symbol ────────────────────────────────────────────── */
-  const currencySymbol =
-    invoice.currency === "EUR"
-      ? "€"
-      : invoice.currency === "GBP"
-        ? "£"
-        : invoice.currency === "JPY"
-          ? "¥"
-          : invoice.currency === "INR"
-            ? "₹"
-            : "$";
+  const CURRENCY_SYMBOLS: Record<string, string> = {
+    USD: "$",
+    CAD: "CA$",
+    AUD: "A$",
+    SGD: "S$",
+    EUR: "€",
+    GBP: "£",
+    JPY: "¥",
+    INR: "₹",
+    CNY: "¥",
+    CHF: "₣",
+    KRW: "₩",
+    THB: "฿",
+    AED: "AED ",
+    SAR: "SAR ",
+    MXN: "MX$",
+    BRL: "R$",
+  };
+  const currencySymbol = invoice.currency
+    ? (CURRENCY_SYMBOLS[invoice.currency.trim().toUpperCase()] ??
+      `${invoice.currency.trim()} `)
+    : "$";
 
   return (
     <div className="space-y-5">
@@ -545,19 +555,16 @@ export function InvoiceForm({
             <label className={labelCls} htmlFor="currency">
               Currency
             </label>
-            <select
+            <input
               id="currency"
-              data-ocid="form.currency_select"
+              data-ocid="form.currency_input"
+              type="text"
               value={invoice.currency}
               onChange={(e) => onSetCurrency(e.target.value)}
               className={inputCls}
-            >
-              {CURRENCIES.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
+              placeholder="e.g. USD, Euro, INR, AED"
+              autoComplete="off"
+            />
           </div>
 
           {/* Tax Rate */}
