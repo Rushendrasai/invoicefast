@@ -1,0 +1,26 @@
+{
+  "overview": "InvoiceFast is a fast, client-side invoice creator that lets you fill out billing details and instantly download a professional PDF invoice — no login required. Features live preview, theme color customization, and localStorage persistence for your company details.",
+  "features": [
+    "Smart invoice form with dynamic line items and real-time totals",
+    "Live side-by-side PDF preview (toggle on mobile)",
+    "One-click PDF download optimized for A4 printing",
+    "Drag-and-drop company logo upload with thumbnail preview",
+    "Theme color customization for branded invoices",
+    "Automatic calculations: subtotal, tax, discount, grand total",
+    "localStorage persistence for sender company details",
+    "Form validation with required field highlighting",
+    "Reusable header and footer components",
+    "Ad banner placeholder spaces above and below the form"
+  ],
+  "category": "productivity",
+  "tags": [
+    "invoice",
+    "pdf",
+    "billing",
+    "productivity",
+    "client-side",
+    "react",
+    "tailwind"
+  ],
+  "last_updated": "2026-04-16T06:30:34.718Z"
+}
